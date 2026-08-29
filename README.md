@@ -22,22 +22,22 @@ To achieve deterministic execution and minimal contention, the system strictly s
 
 ```mermaid
 graph TD
-    subgraph Network Layer
+    subgraph Network_Layer [Network Layer]
         C1[TCP Client 1] -->|Network| S(TCP Server)
         C2[TCP Client N] -->|Network| S
     end
     
-    subgraph Order Ingestion (Producers)
+    subgraph Order_Ingestion [Order Ingestion - Producers]
         S -->|Parse & Validate| P1[Producer Thread 1]
         S -->|Parse & Validate| P2[Producer Thread N]
     end
 
-    subgraph Concurrency Boundary
+    subgraph Concurrency_Boundary [Concurrency Boundary]
         P1 -->|Enqueue| Q((Thread-Safe MPSC Queue))
         P2 -->|Enqueue| Q
     end
 
-    subgraph Matching Engine (Single Consumer)
+    subgraph Matching_Engine [Matching Engine - Single Consumer]
         Q -->|Dequeue| ME[Matching Engine Loop]
         ME -->|Mutate| OB[(Limit Order Book)]
     end

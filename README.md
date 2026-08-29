@@ -42,8 +42,8 @@ graph TD
         ME -->|Mutate| OB[(Limit Order Book)]
     end
     
-    style OB fill:#ff9999,stroke:#333,stroke-width:2px
-    style Q fill:#99ccff,stroke:#333,stroke-width:2px
+    style OB fill:#ff9999,stroke:#333,stroke-width:2px,color:#000
+    style Q fill:#99ccff,stroke:#333,stroke-width:2px,color:#000
 ```
 
 ## 📊 Performance & Benchmarks

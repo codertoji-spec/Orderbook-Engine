@@ -80,7 +80,7 @@ docker run --rm orderbook-engine ./build/unit_tests
 # Run the extreme performance benchmark
 docker run --rm orderbook-engine ./build/benchmark --orders 500000 --producers 4
 ```
-*(Windows users can simply double-click the provided `test.bat` file!)*
+
 
 ### Option 2: Native CMake Build
 ```bash
@@ -113,7 +113,7 @@ NEW BUY 1001 105 50    (Places Buy Order #1001 for 50 shares at $105)
 NEW SELL 2001 105 50   (Places matching Sell Order, instantly executing trade!)
 CANCEL 1001            (Cancels Order #1001 in O(1) time)
 ```
-*(Windows users can use the `1_start_server.bat` and `2_start_client.bat` shortcuts).*
+
 
 ## 📁 Directory Structure
 - `include/`: C++ header definitions (Domain Models, TCP Interfaces, Data Structures).

@@ -1,4 +1,4 @@
-# ⚡ High-Performance Multithreaded Order Book & Matching Engine
+# High-Performance Multithreaded Order Book & Matching Engine
 
 ![C++](https://img.shields.io/badge/C%2B%2B-20-blue.svg)
 ![CMake](https://img.shields.io/badge/CMake-Build-success.svg)
@@ -7,7 +7,7 @@
 
 A portfolio-grade, ultra-low-latency Limit Order Book (LOB) and Matching Engine written in modern C++20. This project is designed to simulate the core backend infrastructure of financial and cryptocurrency exchanges, demonstrating advanced systems engineering, thread synchronization, and data structure optimization.
 
-## 🚀 Key Features
+## Key Features
 
 - **Blazing Fast Throughput:** Capable of processing over **1.4 Million orders per second** on standard consumer hardware.
 - **Sub-Microsecond Latency:** Average order processing latency of **~250 nanoseconds**.
@@ -16,7 +16,7 @@ A portfolio-grade, ultra-low-latency Limit Order Book (LOB) and Matching Engine 
 - **POSIX Networking:** Fully functional multithreaded TCP Server and Client to accept orders over the network.
 - **Sanitizer Validated:** Build matrix rigorously tested against AddressSanitizer (ASAN), UndefinedBehaviorSanitizer (UBSAN), and ThreadSanitizer (TSAN) for memory and thread safety.
 
-## 🧠 Architecture Overview
+## Architecture Overview
 
 To achieve deterministic execution and minimal contention, the system strictly separates Order ingestion (Network/Producers) from Order matching (Consumer).
 
@@ -46,7 +46,7 @@ graph TD
     style Q fill:#99ccff,stroke:#333,stroke-width:2px,color:#000
 ```
 
-## 📊 Performance & Benchmarks
+## Performance & Benchmarks
 
 The project ships with a built-in benchmarking suite that stresses the engine using a randomized mix of standard distributions.
 
@@ -60,7 +60,7 @@ The project ships with a built-in benchmarking suite that stresses the engine us
 | **P95 Latency** | `481 ns` |
 | **P99 Latency** | `1.26 µs` |
 
-## 🛠️ Getting Started
+## Getting Started
 
 ### Prerequisites
 - **Linux** (or Windows via **WSL2** / **Docker**)
@@ -93,7 +93,7 @@ cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build -j$(nproc)
 ```
 
-## 🎮 Interactive Demo (TCP Networking)
+## Interactive Demo (TCP Networking)
 
 You can launch the engine as a live TCP server and connect to it as a client to submit live orders.
 
@@ -115,7 +115,7 @@ CANCEL 1001            (Cancels Order #1001 in O(1) time)
 ```
 
 
-## 📁 Directory Structure
+## Directory Structure
 - `include/`: C++ header definitions (Domain Models, TCP Interfaces, Data Structures).
 - `src/`: Core implementation logic.
 - `benchmarks/`: Multi-threaded benchmarking and stress-testing executables.
@@ -123,10 +123,9 @@ CANCEL 1001            (Cancels Order #1001 in O(1) time)
 - `tools/`: Network client CLI application.
 - `docs/`: Extensive design writeups on concurrency and algorithmic choices.
 
-## 🔮 Future Optimizations (TODO)
+## Future Optimizations (TODO)
 While currently highly performant, this engine can be evolved further:
 1. **Custom Memory Arenas:** Replace STL default allocators (`new`/`delete` inside `std::list`) with a pre-allocated slab allocator/object pool to guarantee zero dynamic allocations on the hot path.
 2. **Lock-Free Queue (Ring Buffer):** Replace the `std::mutex` bounded queue with an atomic LMAX Disruptor-style ring buffer.
 3. **Kernel Bypass:** Replace POSIX Sockets with `epoll` or `io_uring`, or bypass the kernel entirely using DPDK for network ingestion.
 4. **Thread Affinity:** Pin the Consumer thread to an isolated CPU core via `pthread_setaffinity_np` to eliminate OS context-switching.
-

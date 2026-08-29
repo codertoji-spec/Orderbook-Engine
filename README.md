@@ -129,3 +129,4 @@ While currently highly performant, this engine can be evolved further:
 2. **Lock-Free Queue (Ring Buffer):** Replace the `std::mutex` bounded queue with an atomic LMAX Disruptor-style ring buffer.
 3. **Kernel Bypass:** Replace POSIX Sockets with `epoll` or `io_uring`, or bypass the kernel entirely using DPDK for network ingestion.
 4. **Thread Affinity:** Pin the Consumer thread to an isolated CPU core via `pthread_setaffinity_np` to eliminate OS context-switching.
+
